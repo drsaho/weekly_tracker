@@ -30,6 +30,27 @@ function emptyRow() {
   };
 }
 
+function addDaysISO(dateStr, days) {
+  // dateStr: "YYYY-MM-DD"
+  const d = new Date(dateStr);
+  if (isNaN(d)) return "";
+  d.setDate(d.getDate() + days);
+  // back to YYYY-MM-DD (local)
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+function autoFillWeeklyDatesFromFirst() {
+  const first = state.rows[0].date;
+  if (!first) return;
+  for (let i = 1; i < state.rows.length; i++) {
+    state.rows[i].date = addDaysISO(first, 7 * i);
+  }
+}
+
+
 // ---- Plan generation ----
 function generateGoals(start) {
   const startNum = Number(start);
@@ -42,6 +63,11 @@ function generateGoals(start) {
     const goal = +(startNum - 2 * (i + 1)).toFixed(1); // week1 = start - 2
     return { ...row, goal: goal.toString() };
   });
+  // If first row has a date, fill the rest weekly
+if (state.rows[0].date) {
+  autoFillWeeklyDatesFromFirst();
+}
+
   save();
   render();
 }
@@ -89,6 +115,12 @@ function onCellChange(e) {
 
   // keep values as strings (we format when needed)
   state.rows[i][k] = e.target.value.trim();
+  
+  // If user sets the first row's date, auto-fill the rest weekly
+if (k === "date" && i === 0 && state.rows[0].date) {
+  autoFillWeeklyDatesFromFirst();
+}
+
   save();
 }
 
