@@ -9,3 +9,26 @@ body {
 h1 {
   color: #3366cc;
 }
+
+form { display: grid; gap: 8px; max-width: 420px; margin: 16px 0; }
+input, button { padding: 8px 10px; font-size: 16px; }
+table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+th, td { border-bottom: 1px solid #ddd; padding: 8px; text-align: left; }
+tbody tr:hover { background: #eef5ff; }
+
+
+section { display:flex; gap:8px; align-items:center; flex-wrap: wrap; margin: 12px 0; }
+.ghost { background: transparent; border: 1px solid #bbb; color:#333; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { border-bottom: 1px solid #ddd; padding: 8px; text-align: left; }
+tbody tr:hover { background: #eef5ff; }
+
+td input {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+td input[type="number"] { text-align: right; }
