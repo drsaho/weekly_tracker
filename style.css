@@ -1,3 +1,4 @@
+/* base body styles */
 body {
   font-family: Arial, sans-serif;
   background: #f2f6fc;
@@ -6,24 +7,66 @@ body {
   padding: 20px;
 }
 
+/* primary heading color */
 h1 {
   color: #3366cc;
 }
 
-form { display: grid; gap: 8px; max-width: 420px; margin: 16px 0; }
-input, button { padding: 8px 10px; font-size: 16px; }
-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
-th, td { border-bottom: 1px solid #ddd; padding: 8px; text-align: left; }
-tbody tr:hover { background: #eef5ff; }
+/* plan controls row */
+section {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
 
+/* subtle outline button */
+.ghost {
+  background: transparent;
+  border: 1px solid #bbb;
+  color: #333;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
-section { display:flex; gap:8px; align-items:center; flex-wrap: wrap; margin: 12px 0; }
-.ghost { background: transparent; border: 1px solid #bbb; color:#333; }
+/* solid small button */
+section button {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: none;
+  background: #3366cc;
+  color: #fff;
+  cursor: pointer;
+}
 
-table { width: 100%; border-collapse: collapse; }
-th, td { border-bottom: 1px solid #ddd; padding: 8px; text-align: left; }
-tbody tr:hover { background: #eef5ff; }
+/* input/select look */
+#tdee-section select, #tdee-section input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+}
 
+/* table layout basics */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* table cell padding/border */
+th, td {
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+/* row hover highlight */
+tbody tr:hover {
+  background: #eef5ff;
+}
+
+/* input fill across cells */
 td input {
   width: 100%;
   padding: 6px 8px;
@@ -31,4 +74,61 @@ td input {
   box-sizing: border-box;
 }
 
-td input[type="number"] { text-align: right; }
+/* right-align number inputs */
+td input[type="number"] {
+  text-align: right;
+}
+
+/* stats grid */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 8px 0;
+}
+
+/* stats key text color */
+.stats .k {
+  color: #555;
+  margin-right: 4px;
+}
+
+/* responsive stats grid */
+@media (max-width: 800px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* positive/negative colors */
+.pos { color: crimson; }
+.neg { color: green; }
+
+/* charts side-by-side (wraps to one on mobile) */
+.charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 1000px) {
+  .charts { grid-template-columns: 1fr; }
+}
+
+/* series toggle row */
+.series-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin-top: 8px;
+  align-items: center;
+}
+.series-controls label {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 14px;
+  color: #333;
+}
+
+/* show/hide unit-specific inputs */
+.unit-us[hidden], .unit-metric[hidden] { display: none !important; }
